@@ -20,7 +20,9 @@ namespace CoreTax.Infrastructure.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Impuesto>().Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Impuesto>().HasKey(x=> x.Id);
+
         }
 
     }

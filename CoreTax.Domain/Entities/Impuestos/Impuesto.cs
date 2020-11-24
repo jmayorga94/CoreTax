@@ -16,6 +16,10 @@ namespace CoreTax.Domain.Entities.Impuestos
         public DateTime FechaDesde { get; set; }
         public DateTime FechaHasta { get; set; }
 
+        public Impuesto()
+        {
+
+        }
         public Impuesto(int codigoImpuesto, string nombre, string descripcion, string abbreviacion, DateTime fechaDesde , DateTime fechaHasta)
         {
             CodigoImpuesto = codigoImpuesto;
