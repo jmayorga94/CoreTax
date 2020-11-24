@@ -33,7 +33,7 @@ namespace CoreTax.Domain.Managers
             _repository.DarDeBajaImpuesto(id);
         }
 
-        public Impuesto Editar(int id, Impuesto impuesto)
+        public Impuesto Editar(int id, int codigoImpuesto, string nombre, string descripcion, string abbreviacion)
         {
             var impuestoAEditar = _repository.ObtenerImpuestoPorId(id);
 
@@ -42,27 +42,19 @@ namespace CoreTax.Domain.Managers
                 throw new ImpuestoNoEncontradoException();
             }
 
-            if (!impuesto.IsFechaCreacionValida())
-            {
-                throw new FechaCreacionNoValidaException();
-            }
-
-            if (!impuesto.IsFechaDesdeYHastaIguales())
-            {
-                throw new FechaDesdeYHastaNoValidaException();
-            }
-
-            impuestoAEditar.Abbreviacion = impuesto.Abbreviacion;
-            impuestoAEditar.Nombre = impuesto.Nombre;
-            impuestoAEditar.TipoCuenta = impuesto.TipoCuenta;
-            impuestoAEditar.CodigoImpuesto = impuesto.CodigoImpuesto;
+            impuestoAEditar.Abbreviacion = abbreviacion;
+            impuestoAEditar.Nombre = nombre;
+            impuestoAEditar.CodigoImpuesto =codigoImpuesto;
+           
 
             return _repository.Editar(impuestoAEditar);
             
         }
 
-        public Impuesto Insertar(Impuesto impuesto)
+        public Impuesto Insertar(int codigoImpuesto, string nombre, string descripcion, string abbreviacion, DateTime fechaDesde, DateTime fechaHasta)
         {
+            var impuesto = new Impuesto(codigoImpuesto, nombre, descripcion, abbreviacion, fechaDesde, fechaHasta);
+
             if (!impuesto.IsFechaCreacionValida())
             {
                 throw new FechaCreacionNoValidaException();
