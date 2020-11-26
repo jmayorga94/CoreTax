@@ -14,9 +14,9 @@ namespace CoreTax.Domain.Managers
         {
             _repository = repository;
         }
-        public Impuesto BuscarImpuestoPorCodigo(int codigo)
+        public Impuesto ObtenerDetalleImpuestoPorCodigo(int codigo)
         {
-           var impuesto = _repository.ObtenerImpuestoPorCodigo(codigo);
+           var impuesto = _repository.ObtenerDetalleImpuestoPorCodigo(codigo);
 
             if ( impuesto ==null)
             {
@@ -26,6 +26,19 @@ namespace CoreTax.Domain.Managers
             return impuesto;
         }
 
+        public Impuesto ObtenerDetalleImpuestoPorId(int id)
+        {
+            var impuesto = _repository.ObtenerDetalleImpuestoPorId(id);
+
+            if (impuesto == null)
+            {
+                throw new ImpuestoNoEncontradoException();
+            }
+
+            return impuesto;
+        }
+
+
         public void DarDeBajaImpuesto(int id)
         {
              //Todo incorporar logica para dar de baja  por fecha desde y hasta
@@ -33,19 +46,32 @@ namespace CoreTax.Domain.Managers
             _repository.DarDeBajaImpuesto(id);
         }
 
-        public Impuesto Editar(int id, int codigoImpuesto, string nombre, string descripcion, string abbreviacion)
+        public Impuesto Editar(int id, string nombre, int tipoCuenta, string abbreaviacion, DateTime fechaDesde, DateTime fechaHasta)
         {
-            var impuestoAEditar = _repository.ObtenerImpuestoPorId(id);
+            var impuestoAEditar = _repository.ObtenerDetalleImpuestoPorId(id);
 
             if (impuestoAEditar == null)
             {
                 throw new ImpuestoNoEncontradoException();
             }
 
-            impuestoAEditar.Abbreviacion = abbreviacion;
+            impuestoAEditar.Abbreviacion = abbreaviacion;
             impuestoAEditar.Nombre = nombre;
-            impuestoAEditar.CodigoImpuesto =codigoImpuesto;
-           
+            impuestoAEditar.FechaDesde = fechaDesde;
+            impuestoAEditar.FechaHasta = fechaHasta;
+            impuestoAEditar.TipoCuenta = tipoCuenta;
+
+
+            if (impuestoAEditar.IsFechaDesdeYHastaIguales())
+            {
+                throw new FechaDesdeYHastaNoValidaException();
+            }
+
+            if (impuestoAEditar.IsFechaDesdeMayorAlAnioActual())
+            {
+                throw new FechaDesdeEsMayorAlAnioActualException();
+            }
+
 
             return _repository.Editar(impuestoAEditar);
             
@@ -55,14 +81,14 @@ namespace CoreTax.Domain.Managers
         {
             var impuesto = new Impuesto(codigoImpuesto, nombre, descripcion, abbreviacion, fechaDesde, fechaHasta);
 
-            if (!impuesto.IsFechaCreacionValida())
-            {
-                throw new FechaCreacionNoValidaException();
-            }
-
-            if (!impuesto.IsFechaDesdeYHastaIguales())
+            if (impuesto.IsFechaDesdeYHastaIguales())
             {
                 throw new FechaDesdeYHastaNoValidaException();
+            }
+
+            if (impuesto.IsFechaDesdeMayorAlAnioActual())
+            {
+                throw new FechaDesdeEsMayorAlAnioActualException();
             }
 
             return _repository.Insertar(impuesto);

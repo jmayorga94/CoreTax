@@ -8,8 +8,9 @@ namespace CoreTax.Domain.Managers
     {
         Impuesto Insertar(int codigoImpuesto, string nombre, string descripcion, string abbreviacion, DateTime fechaDesde, DateTime fechaHasta);
         IEnumerable<Impuesto> ObtenerImpuestos();
-        Impuesto Editar(int id, int codigoImpuesto, string nombre, string descripcion, string abbreviacion);
+        Impuesto Editar(int id, string nombre, int tipoCuenta, string abbreaviacion, DateTime fechaDesde, DateTime fechaHasta);
         void DarDeBajaImpuesto(int id);
-        Impuesto BuscarImpuestoPorCodigo(int codigo);
+        Impuesto ObtenerDetalleImpuestoPorCodigo(int codigo);
+        Impuesto ObtenerDetalleImpuestoPorId(int id);
     }
 }

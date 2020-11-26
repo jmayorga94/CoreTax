@@ -12,7 +12,7 @@ namespace CoreTax.Domain.Repositories
         Impuesto Editar(Impuesto impuesto);
         void DarDeBajaImpuesto(int id);
         void Guardar();
-        Impuesto ObtenerImpuestoPorCodigo(int codigo);
-        Impuesto ObtenerImpuestoPorId(int id);
+        Impuesto ObtenerDetalleImpuestoPorCodigo(int codigo);
+        Impuesto ObtenerDetalleImpuestoPorId(int id);
     }
 }

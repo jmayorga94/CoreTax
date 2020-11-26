@@ -4,7 +4,9 @@ using System.Text;
 
 namespace CoreTax.Application.Messages
 {
-    class DarDeBajaImpuestosResponse
+    public class VerDetalleImpuestoRequest 
     {
+        public int Id { get; set; }
+
     }
 }

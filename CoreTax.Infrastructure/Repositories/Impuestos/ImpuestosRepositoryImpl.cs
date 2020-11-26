@@ -15,7 +15,7 @@ namespace CoreTax.Infrastructure.Repositories.Impuestos
         {
             _context = context;
         }
-        public Impuesto ObtenerImpuestoPorCodigo(int codigo)
+        public Impuesto ObtenerDetalleImpuestoPorCodigo(int codigo)
         {
             return _context.Impuestos.FirstOrDefault(x => x.CodigoImpuesto == codigo);
         }
@@ -31,10 +31,7 @@ namespace CoreTax.Infrastructure.Repositories.Impuestos
 
         public Impuesto Editar( Impuesto impuesto)
         {
-            _context.Impuestos.Add(impuesto);
-
             Guardar();
-
             return impuesto;
         }
 
@@ -52,9 +49,9 @@ namespace CoreTax.Infrastructure.Repositories.Impuestos
             return impuesto;
         }
 
-        public Impuesto ObtenerImpuestoPorId(int id)
+        public Impuesto ObtenerDetalleImpuestoPorId(int id)
         {
-            throw new NotImplementedException();
+            return _context.Impuestos.FirstOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Impuesto> ObtenerImpuestos()

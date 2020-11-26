@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoreTax.Application.Messages
+namespace CoreTax.Application.ViewModels
 {
-    public class EditarImpuestoRequest
+    public class EditarImpuestoView
     {
         public int Id { get; set; }
         public int TipoCuenta { get; set; }
@@ -12,6 +12,5 @@ namespace CoreTax.Application.Messages
         public string Abbreviacion { get; set; }
         public DateTime FechaDesde { get; set; }
         public DateTime FechaHasta { get; set; }
-
     }
 }

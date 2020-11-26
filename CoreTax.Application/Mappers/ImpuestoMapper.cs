@@ -22,6 +22,20 @@ namespace CoreTax.Application.Mappers
             };
         }
 
+
+        public static EditarImpuestoView toEditarImpuestoDto(this Impuesto impuesto)
+        {
+            return new EditarImpuestoView()
+            {
+                Abbreviacion = impuesto.Abbreviacion,
+                Nombre = impuesto.Nombre,
+                FechaDesde = impuesto.FechaDesde,
+                FechaHasta = impuesto.FechaHasta,
+                TipoCuenta = impuesto.TipoCuenta,
+                Id = impuesto.Id
+            };
+        }
+
         public static IList<ImpuestoView> toDto(this List<Impuesto> listImpuestos )
         {
             var listaImpuestosView = new List<ImpuestoView>();

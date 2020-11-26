@@ -22,7 +22,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Impuesto" asp-action="Index">Impuestos</a>
                         </li>
                     </ul>
                 </div>
@@ -30,7 +30,14 @@
         </nav>
     </header>
     <div class="container">
+        <div class="m-1 p-1">
+            @if (TempData["message"] != null && TempData["success"].ToString()=="True")
+            {
+                <div class="alert alert-success">@TempData["message"]</div>
+            }
+        </div>
         <main role="main" class="pb-3">
+            
             @RenderBody()
         </main>
     </div>

@@ -26,8 +26,8 @@ namespace CoreTax.Domain.Entities.Impuestos
             Nombre = nombre;
             Descripcion = descripcion;
             Abbreviacion = abbreviacion;
-            FechaCreacion = DateTime.Now;
-            FechaCreacion = fechaDesde;
+            FechaCreacion = DateTime.Now.Date;
+            FechaDesde = fechaDesde;
             FechaHasta = fechaHasta;
         }
         public bool IsActivo()
@@ -40,19 +40,35 @@ namespace CoreTax.Domain.Entities.Impuestos
             return false;
         }
    
-        public bool IsFechaCreacionValida()
+       public bool IsFechaDesdeMayorAlAnioActual()
         {
-            if (FechaCreacion.Date> DateTime.Now.Date)
-            {
-                return false;
-            }
+            if (FechaDesde.Year > DateTime.Now.Year) return true;
 
-            return true;
+            return false;
         }
 
+        public bool IsFechaHastaMayorAlAnioActual()
+        {
+            if (FechaHasta.Year > DateTime.Now.Year) return true;
+
+            return false;
+        }
+
+        public bool IsFechaDesdeMenorAlAnioActual()
+        {
+            if (FechaDesde.Year < DateTime.Now.Year) return true;
+
+            return false;
+        }
+        public bool IsFechaHastaMenorAlAnioActual()
+        {
+            if (FechaHasta.Year < DateTime.Now.Year) return true;
+
+            return false;
+        }
         public bool IsFechaDesdeYHastaIguales()
         {
-            if (FechaCreacion.Date == FechaHasta.Date)
+            if (FechaDesde.Date == FechaHasta.Date)
             {
                 return true;
             }

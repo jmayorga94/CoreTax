@@ -6,8 +6,8 @@ using System.Text;
 
 namespace CoreTax.Application.Messages
 {
-    public class EditarImpuestoResponse : ResponseBase
+    public class VerDetalleImpuestoResponse :ResponseBase
     {
-        public EditarImpuestoView ImpuestoEditado { get; set; }
+        public ImpuestoView Impuesto { get; set; }
     }
 }

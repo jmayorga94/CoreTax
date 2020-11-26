@@ -1,0 +1,52 @@
+﻿@model CoreTax.Application.Messages.CrearImpuestoRequest
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Crear Impuesto</h1>
+<div asp-validation-summary="ModelOnly"></div>
+<form method="Post">
+    <div class="form-group">
+
+        <label asp-for="CodigoImpuesto">Codigo Impuesto</label>
+        <div><span asp-validation-for="CodigoImpuesto" class="text-danger"></span></div>
+        <input asp-for="CodigoImpuesto" class="form-control"  placeholder="Ingresar codigo" />
+    </div>
+    <div>
+        <label asp-for="Nombre">
+            Nombre
+        </label>
+        <div><span asp-validation-for="Nombre" class="text-danger"></span></div>
+        <input asp-for="Nombre" class="form-control" placeholder="Ingresar nombre"   />
+    </div>
+    <div class="form-group">
+        <label asp-for="Descripcion">Descripción</label>
+        <div><span asp-validation-for="Descripcion" class="text-danger" ></span></div>
+        <input class="form-control" asp-for="Descripcion" placeholder="Ingresar descripcion"  />
+    </div> 
+    <div class="form-group">
+        <label asp-for="TipoCuenta">Tipo Cuenta</label>
+        <div><span asp-validation-for="TipoCuenta" class="text-danger" ></span></div>
+        <input asp-for="TipoCuenta" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Abbreviacion">Abbreviacion</label>
+        <div><span asp-validation-for="Abbreviacion" class="text-danger" ></span></div>
+        <input asp-for="Abbreviacion" class="form-control" max="5" placeholder="" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FechaDesde">Fecha Desde</label>
+        <div><span asp-validation-for="FechaDesde" class="text-danger" ></span></div>
+        <input asp-for="FechaDesde" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FechaHasta">Fecha Hasta</label>
+        <div><span asp-validation-for="FechaHasta" class="text-danger" ></span></div>
+        <input asp-for="FechaHasta" type="date" class="form-control" />
+    </div>
+    <div class="text-center">
+        <button asp-action="Crear" type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>
+
